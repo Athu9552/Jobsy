@@ -1,0 +1,215 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  /* background-color: antiquewhite; */
+  background-color: #FFFBFE;
+}
+
+.Fetures {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.side1 {
+  height: 100vh;
+  width: 5vw;
+}
+
+.Fetures h1 {
+  margin-top: 15vh;
+  color: #000;
+}
+
+.card {
+  margin-top: 15vh;
+  height: 25vh;
+  width: 80vw;
+  color: #fff;
+  background: #0b1220;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 0.98vh;
+}
+
+#extractedTextArea {
+  height: 40vh;
+  width: 80vw;
+  color: #fff;
+  background: #0b1220;
+  padding: 14px;
+  border-radius: 12px;
+  margin-top: 9.5vh;
+  margin-bottom: 16px;
+  margin-left: -13px;
+}
+
+.btn {
+  background: #06b6d4;
+  color: #022;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+textarea {
+  width: 100%;
+  height: 151px;
+  margin-top: 10px;
+  border-radius: 8px;
+  padding: 8px;
+  background: #0b1220;
+  color: #fff;
+  border: none;
+}
+
+.skill {
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.progress {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress>i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #06b6d4, #34d399);
+  width: 0;
+}
+
+.btn1 {
+  height: 2.5vw;
+  width: 8vw;
+  color: #fff;
+  background-color: #ed2337;
+  border: none;
+  border-radius: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+#jobPage {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #fff;
+}
+
+#jobPage h2 {
+  /* margin-top: 2vw; */
+  text-align: center;
+  font-size: 3.5vw;
+}
+
+#Heading {
+  margin-top: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+  gap: 389px;
+}
+
+#alignBtn {
+  height: 5vh;
+  width: 100%;
+  margin-top: 1.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.job {
+  height: 10vh;
+  width: 100%;
+  padding: 2.5vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.job strong {
+  width: 25vw;
+}
+
+.job span {
+  width: 25vw;
+}
+
+.job p {
+  width: 25vw;
+}
+
+@media (max-width: 768px) {
+
+  body,
+  html {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .Fetures {
+    height: 121vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .side1 {
+    margin-top: -35vh;
+    height: auto;
+    width: auto;
+  }
+
+  .card {
+    margin-top: 3vh;
+    height: 35vh;
+    width: 85vw;
+  }
+
+  #extractedTextArea {
+    margin-top: 13vh;
+    height: auto;
+    width: 85vw;
+  }
+
+  #detectedSkills {
+    height: auto;
+    width: 100vw;
+  }
+}

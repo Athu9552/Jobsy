@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: url("img/image.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SignF {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 13px 21px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+}
+
+.centerF {
+  text-align: center;
+}
+
+.centerF h1 {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+/* Toggle button in top-right corner */
+#toggleBtn {
+  height: 45px;
+  width: 75px;
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  font-size: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.85);
+  color: #2575fc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#toggleBtn:hover {
+  background: #6a11cb;
+  color: #fff;
+}
+
+img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+label {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #2575fc;
+  outline: none;
+}
+
+button,
+input[type="submit"],
+input[type="button"] {
+  width: 100%;
+  padding: 12px;
+  background: #2575fc;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background: #6a11cb;
+}
+
+p {
+  padding-top: 5px;
+}

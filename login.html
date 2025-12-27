@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="signup&login.css" />
+  </head>
+  <body>
+    <div class="SignF">
+      <button id="toggleBtn" onclick="toggleBackground()">Theme</button>
+      <div class="centerF">
+        <h1>Login</h1>
+        <form action="Backend/login.php" method="POST">
+          <label for="email">Email</label><br />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter Your Email"
+            required
+          /><br /><br />
+
+          <label for="password">Password</label><br />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter Your Password"
+            required
+          /><br /><br />
+
+          <button type="submit" name="Login">Login</button>
+          <p>
+            <a href="http://localhost/Smart%20Job%20Recommendation/signup.html"
+              >Create Account</a
+            >
+          </p>
+        </form>
+      </div>
+    </div>
+    <script>
+      const backgrounds = [
+        "img/image.png", // First background
+        "img/image1.png", // Second background
+      ];
+
+      let index = 0;
+      const body = document.body;
+
+      function toggleBackground() {
+        index = (index + 1) % backgrounds.length;
+        body.style.backgroundImage = `url(${backgrounds[index]})`;
+      }
+    </script>
+  </body>
+</html>

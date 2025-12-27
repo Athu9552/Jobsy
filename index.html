@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jobsy</title>
+    <link rel="shortcut icon" href="Img/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bogle&family=Oswald:wght@200..700&family=PT+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div id="logo">
+        <h1>Jobsy</h1>
+      </div>
+      <div id="nav-search">
+        <input type="text" id="searchInput" placeholder="Search Jobs..." />
+        <button onclick="searchJob()">Search</button>
+      </div>
+      <div id="nav-elem">
+        <h5><a href="#page1">Home</a></h5>
+        <h5><a href="#page2">Jobs</a></h5>
+        <!-- <h5><a href="#Savedjobs" onclick="showSavedJobs()">Saved Jobs</a></h5>
+        <h5>
+          <a href="#Savedjobs" onclick="showApplications()"
+            >Application History</a
+          >
+        </h5> -->
+        <h5>
+          <a
+            href="http://localhost/Smart%20Job%20Recommendation/resume_score.html"
+            >Fetures</a
+          >
+        </h5>
+        <h5>
+          <a href="http://localhost/Smart%20Job%20Recommendation/courses.html"
+            >Courses</a
+          >
+        </h5>
+        <h5><a href="#page3">Feedback</a></h5>
+        <h5>
+          <a href="http://localhost/Smart%20Job%20Recommendation/login.html"
+            >Logout</a
+          >
+        </h5>
+      </div>
+    </nav>
+
+    <div id="main">
+      <div id="page1">
+        <h1 id="heroH1">Find Your Perfect Job</h1>
+        <h1 id="heroh1">Just Upload Your Resume</h1>
+        <div id="ResumeUpload">
+          <div id="UploadBtn">
+            <input type="file" id="Resume" accept=".pdf" />
+          </div>
+          <div id="GetJob">
+            <button onclick="MatchJob()">Check Job</button>
+          </div>
+        </div>
+      </div>
+      <div id="jobPage" style="display: none">
+        <h2>Live Job Recommendations</h2>
+        <div id="Heading">
+          <h4>Title</h4>
+          <h4>Company</h4>
+          <h4>Location</h4>
+          <h4>Apply</h4>
+        </div>
+        <div class="jobs" id="jobList"></div>
+        <div id="alignBtn">
+          <button onclick="goBack()" id="backBtn">Back</button>
+        </div>
+      </div>
+
+      <div id="page2">
+        <h2>Explore Jobs by Category</h2>
+        <div id="sectorGrid"></div>
+      </div>
+
+      <div id="Savedjobs">
+        <div id="savedJobs">
+          <h2>Saved Jobs</h2>
+          <hr />
+          <div id="savedJobList"></div>
+        </div>
+
+        <div id="applicationHistory">
+          <h2>Application History</h2>
+          <hr />
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="applicationList"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <section id="homeReviews">
+        <h2>What Our Users Say</h2>
+        <div id="homeReviewCards"></div>
+      </section>
+
+      <div id="page3">
+        <div class="div1">
+          <video id="ContactBg" src="Img/bg.mp4" muted autoplay loop></video>
+        </div>
+        <div class="div2">
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <input
+              type="hidden"
+              name="access_key"
+              value="301a4d26-b3d6-423d-81e8-65228ba4e7ec"
+            />
+            <label for="name">Name</label><br />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter Your Name"
+              required
+            /><br /><br />
+
+            <label for="gmail">Gmail</label><br />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter Your Email"
+              required
+            /><br /><br />
+
+            <label for="message">Message</label><br />
+            <textarea
+              name="message"
+              id="message"
+              placeholder="Message Here.."
+              required
+            ></textarea
+            ><br /><br />
+
+            <button id="subBtn" onclick="sendMail(event)">Submit</button
+            ><br /><br />
+          </form>
+        </div>
+      </div>
+
+      <footer>
+        <div class="footer-container">
+          <div class="footer-left">
+            <h3>Smart Job Recommendation</h3>
+            <p>Helping you find the right career path.</p>
+          </div>
+
+          <div class="footer-center">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#page1">Home</a></li>
+              <li><a href="#page2">Jobs</a></li>
+              <li><a href="#page3">Feedback</a></li>
+              <li><a href="/login.html">Logout</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-right">
+            <h4>Contact</h4>
+            <p>Email: atharvakumbhar9552@gmail</p>
+            <p>Phone: +91 8830730212</p>
+            <div class="social-icons">
+              <a href="https://github.com/Athu9552"
+                ><img src="Img/github.svg" alt="Github"
+              /></a>
+              <a href="https://www.linkedin.com/in/atharva-kumbhar-0b245331a/"
+                ><img src="Img/linkdin.svg" alt="Linkdin"
+              /></a>
+              <a href="https://x.com/AtharvaK9552"
+                ><img src="Img/twitter.svg" alt="Twitter"
+              /></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2025 Smart Job Recommendation. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <div class="preloader">
+      <div id="loader"></div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+      integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
