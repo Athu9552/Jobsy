@@ -259,15 +259,15 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  position: sticky;
-  top: 0;
-  z-index: -1;
+  position: relative;
+  z-index: 1;
   padding: 20px;
   box-sizing: border-box;
 }
 
 #savedJobs,
 #applicationHistory {
+  height: auto;
   flex: 1 1 45%;
   min-width: 300px;
   height: 80vh;
@@ -280,6 +280,65 @@ button {
   border: 1px solid #1e293b;
   padding: 15px;
   box-sizing: border-box;
+}
+
+#savedJobList {
+  max-height: calc(80vh - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 5px;
+}
+
+#savedJobList,
+#savedJobList * {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+#savedJobList::-webkit-scrollbar {
+  width: 6px;
+}
+
+#savedJobList::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 10px;
+}
+
+#savedJobs,
+#applicationHistory {
+  overflow: hidden;
+}
+
+#applicationHistory table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#applicationHistory thead,
+#applicationHistory tbody {
+  display: block;
+}
+
+#applicationHistory tbody {
+  max-height: calc(80vh - 120px);
+  overflow-y: auto;
+}
+
+#applicationHistory thead tr,
+#applicationHistory tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+#applicationHistory tbody::-webkit-scrollbar {
+  width: 6px;
+}
+
+#applicationHistory tbody::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 10px;
 }
 
 
