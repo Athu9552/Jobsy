@@ -16,6 +16,36 @@ async function extractTextFromPDF(file) {
     reader.readAsArrayBuffer(file);
   });
 }
+async function extractTextFromDOCX(file) {
+  const arrayBuffer = await file.arrayBuffer();
+  const result = await mammoth.extractRawText({ arrayBuffer });
+  return result.value.toLowerCase();
+}
+
+async function extractResumeText(file) {
+  const extension = file.name.split(".").pop().toLowerCase();
+
+  if (extension === "pdf") {
+    return await extractTextFromPDF(file);
+  }
+
+  if (extension === "docx") {
+    return await extractTextFromDOCX(file);
+  }
+
+  throw new Error("Unsupported file format");
+}
+
+const resumeInput = document.getElementById("Resume");
+const fileNameField = document.getElementById("fileName");
+
+resumeInput.addEventListener("change", () => {
+  if (resumeInput.files.length > 0) {
+    fileNameField.textContent = "✅ " + resumeInput.files[0].name;
+  } else {
+    fileNameField.textContent = "PDF or DOCX, Max 2MB";
+  }
+});
 
 async function MatchJob() {
   const fileInput = document.getElementById("Resume").files[0];
@@ -24,7 +54,7 @@ async function MatchJob() {
     return;
   }
 
-  const text = await extractTextFromPDF(fileInput);
+const text = await extractResumeText(fileInput);
 
   // Extract skills
   const skills = [
@@ -451,7 +481,7 @@ function PreLoader() {
     opacity: 0,
     duration: -1,
   });
-  
+
 }
 
 PreLoader();

@@ -11,12 +11,13 @@
       href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bogle&family=Oswald:wght@200..700&family=PT+Mono&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <nav>
       <div id="logo">
-        <h1>Jobsy</h1>
+        <h1><i class="fa-solid fa-person-walking-luggage"></i>Jobsy</h1>
       </div>
       <div id="nav-search">
         <input type="text" id="searchInput" placeholder="Search Jobs..." />
@@ -56,12 +57,22 @@
         <h1 id="heroH1">Find Your Perfect Job</h1>
         <h1 id="heroh1">Just Upload Your Resume</h1>
         <div id="ResumeUpload">
-          <div id="UploadBtn">
-            <input type="file" id="Resume" accept=".pdf" />
-          </div>
-          <div id="GetJob">
-            <button onclick="MatchJob()">Check Job</button>
-          </div>
+         <div class="upload-wrapper">
+
+         <div class="upload-box" onclick="document.getElementById('Resume').click()">
+         <span id="uploadIcon">📄</span>
+         <span id="fileName">PDF or DOCX, Max 2MB</span>
+         </div>
+
+         <input type="file" id="Resume" accept=".pdf,.docx" hidden>
+
+         <button class="upload-btn" onclick="MatchJob()">
+         Upload & Find Jobs
+         </button>
+
+        </div>
+        </div>
+
         </div>
       </div>
       <div id="jobPage" style="display: none">
@@ -208,6 +219,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script src="https://unpkg.com/mammoth/mammoth.browser.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

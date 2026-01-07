@@ -38,15 +38,16 @@ nav {
 
 #logo {
   height: 10vh;
-  width: 15vw;
+  width: 10vw;
   /* background-color: red; */
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: -151px;
 }
 
 #logo h1 {
-  font-size: 1vw;
+  font-size: 1.5vw;
   font-weight: 500;
 }
 
@@ -61,7 +62,7 @@ nav {
 #nav-search input {
   height: 30px;
   padding: 5px 10px;
-  border-radius: 20px;
+  border-radius: 5px;
   border: none;
   outline: none;
 }
@@ -69,7 +70,7 @@ nav {
 #nav-search button {
   height: 30px;
   padding: 0 15px;
-  border-radius: 20px;
+  border-radius: 5px;
   background-color: #ed2337;
   color: white;
   border: none;
@@ -121,6 +122,49 @@ nav {
   justify-content: center;
   align-items: center;
   border: dotted;
+}
+
+.upload-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 420px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-size: 15px;
+  color: #666;
+}
+
+.upload-box:hover {
+  border: 1px solid #ed2337;
+}
+
+.upload-btn {
+  padding: 21px 22px;
+  border-radius: 10px;
+  border: none;
+  background: #ed2337;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  background: #c91c2e;
 }
 
 .job-actions button {
@@ -633,6 +677,14 @@ footer {
     padding-left: 0;
   }
 
+  #logo{
+    margin-right: -5px;
+  }
+
+  #logo h1{
+    font-size: 10px;
+  }
+
   #jobPage h2 {
     font-size: 2.5rem;
   }
@@ -654,12 +706,20 @@ footer {
 
   #logo h1 {
     font-size: 10px;
+    margin-left: 35px;
   }
 
   #nav-elem {
     gap: 2px;
-    padding-left: 44vw;
-    padding-bottom: 8vh;
+    padding-bottom: 0vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 15px;
+  }
+
+  #nav-search input{
+    margin-left: 35px;
   }
 
   #nav-elem a {
@@ -745,6 +805,48 @@ footer {
   #subBtn {
     width: 100%;
     max-width: 350px;
+  }
+}
+
+@media (max-width: 900px) {
+  .upload-wrapper {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .upload-box {
+    width: 103%;
+    max-width: 420px;
+    justify-content: center;
+    text-align: center;
+    padding: 5px 15px;
+  }
+
+  .upload-btn {
+    width: 66%;
+    max-width: 416px;
+    padding: 10px 15px;
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .upload-wrapper {
+    margin-top: 18px;
+    padding: 0 10px;
+  }
+
+  .upload-box {
+    width: 100%;
+    font-size: 14px;
+    padding: 5px 11px;
+    margin-top: 8px;
+  }
+
+  .upload-btn {
+    width: 54%;
+    padding: 12px;
+    font-size: 10px;
   }
 }
 
