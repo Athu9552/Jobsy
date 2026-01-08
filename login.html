@@ -8,7 +8,6 @@
   </head>
   <body>
     <div class="SignF">
-      <button id="toggleBtn" onclick="toggleBackground()">Theme</button>
       <div class="centerF">
         <h1>Login</h1>
         <form action="Backend/login.php" method="POST">
@@ -39,19 +38,5 @@
         </form>
       </div>
     </div>
-    <script>
-      const backgrounds = [
-        "img/image.png", // First background
-        "img/image1.png", // Second background
-      ];
-
-      let index = 0;
-      const body = document.body;
-
-      function toggleBackground() {
-        index = (index + 1) % backgrounds.length;
-        body.style.backgroundImage = `url(${backgrounds[index]})`;
-      }
-    </script>
   </body>
 </html>
