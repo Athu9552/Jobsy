@@ -6,36 +6,32 @@
     <title>Login</title>
     <link rel="stylesheet" href="signup&login.css" />
   </head>
+
   <body>
     <div class="SignF">
       <div class="centerF">
-        <h1>Login</h1>
-        <form action="Backend/login.php" method="POST">
-          <label for="email">Email</label><br />
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Enter Your Email"
-            required
-          /><br /><br />
+        <h1>User Login</h1>
 
-          <label for="password">Password</label><br />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Enter Your Password"
-            required
-          /><br /><br />
+        <form action="Backend/login.php" method="POST">
+          <label>Email</label>
+          <input type="email" name="email" required />
+
+          <label>Password</label>
+          <input type="password" name="password" required />
 
           <button type="submit" name="Login">Login</button>
+
           <p>
-            <a href="http://localhost/Smart%20Job%20Recommendation/signup.html"
-              >Create Account</a
-            >
+            <a href="signup.html">Create Account</a>
           </p>
         </form>
+
+        <hr />
+
+        <!-- ADMIN LOGIN LINK -->
+        <p class="admin-link">
+          <a href="Backend/admin_login.php">Login as Admin</a>
+        </p>
       </div>
     </div>
   </body>

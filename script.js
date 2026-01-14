@@ -39,13 +39,15 @@ async function extractResumeText(file) {
 const resumeInput = document.getElementById("Resume");
 const fileNameField = document.getElementById("fileName");
 
-resumeInput.addEventListener("change", () => {
-  if (resumeInput.files.length > 0) {
-    fileNameField.textContent = "✅ " + resumeInput.files[0].name;
-  } else {
-    fileNameField.textContent = "PDF or DOCX, Max 2MB";
-  }
-});
+if (resumeInput && fileNameField) {
+  resumeInput.addEventListener("change", () => {
+    if (resumeInput.files.length > 0) {
+      fileNameField.textContent = "✅ " + resumeInput.files[0].name;
+    } else {
+      fileNameField.textContent = "PDF or DOCX, Max 2MB";
+    }
+  });
+}
 
 async function MatchJob() {
   const fileInput = document.getElementById("Resume").files[0];
@@ -427,7 +429,6 @@ async function loadSectorJobs() {
   }
 }
 
-// Run automatically when the page loads
 window.onload = loadSectorJobs;
 
 function PreLoader() {
@@ -444,7 +445,7 @@ function PreLoader() {
   });
 
   tl.to("#loader", {
-    transfrom: "translateY(50%)",
+    transfom: "translateY(50%)",
     scale: 2,
     duration: 0.5,
     ease: "power2.inOut",

@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";      // default in XAMPP/WAMP
-$password = "";          // empty by default
-$dbname = "auth_system"; // the database you created
+$username = "root"; 
+$password = "";    
+$dbname = "auth_system";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 

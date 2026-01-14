@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1767871326,
+        "title": "Frontend Developer",
+        "company": "AK2",
+        "location": "Kolhapur",
+        "email": "atharvakumbhar9552@gmail.com",
+        "date": "2026-01-08",
+        "source": "Local",
+        "priority": 1
+    },
+    {
+        "id": 1767871677,
+        "title": "Accountant",
+        "company": "Xyz Bank Ltd",
+        "location": "Goa",
+        "email": "xyzbank@gmail.com",
+        "date": "2026-01-08",
+        "source": "Local",
+        "priority": 1
+    },
+    {
+        "id": 1767872699,
+        "title": "Backend Developer",
+        "company": "Astrone",
+        "location": "Himalaya",
+        "email": "astrone123@gmail.com",
+        "date": "2026-01-08",
+        "source": "Local",
+        "priority": 1
+    },
+    {
+        "id": 1768102577,
+        "title": "DevOps",
+        "company": "Comiz",
+        "location": "Japan",
+        "email": "comizz@gmail.com",
+        "date": "2026-01-11",
+        "source": "Local",
+        "priority": 1
+    },
+    {
+        "id": 1768360532,
+        "title": "Fullstack Developer",
+        "company": "por",
+        "location": "ratnagiri",
+        "email": "po@gmail.com",
+        "date": "2026-01-14",
+        "source": "Local",
+        "priority": 1
+    }
+]
