@@ -7,11 +7,9 @@ if (!isset($_SESSION['admin'])) {
 
 /* ---------- LOCAL JOBS FILE ---------- */
 $localJobsFile = 'jobs.json';
-
 if (!file_exists($localJobsFile)) {
     file_put_contents($localJobsFile, json_encode([]));
 }
-
 $localJobs = json_decode(file_get_contents($localJobsFile), true) ?? [];
 
 /* ---------- FIX OLD LOCAL JOBS ---------- */
@@ -61,10 +59,8 @@ if (isset($_GET['delete'])) {
     $success = "Job deleted successfully!";
 }
 
-/* ---------- SORT LOCAL JOBS (PRIORITY FIRST) ---------- */
-usort($localJobs, function ($a, $b) {
-    return $a['priority'] <=> $b['priority'];
-});
+/* ---------- SORT LOCAL JOBS ---------- */
+usort($localJobs, fn($a,$b)=> $a['priority'] <=> $b['priority']);
 
 /* ---------- FETCH ADZUNA JOBS ---------- */
 $appId  = "d4891409";
@@ -76,109 +72,190 @@ try {
     $res = file_get_contents($apiUrl);
     $data = json_decode($res, true);
     $adzunaJobs = $data['results'] ?? [];
-} catch (Exception $e) {
-    $adzunaJobs = [];
-}
+} catch (Exception $e) {}
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-<meta charset="UTF-8">
-<title>Manage Jobs</title>
-<link rel="stylesheet" href="../admin.css">
-<style>
-.admin-container { max-width: 1000px; margin: 30px auto; padding: 20px; background: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-h2,h3{text-align:center;}
-.job-form input,button{padding:10px;width:90%;max-width:400px;margin:5px auto;display:block;}
-button{background:linear-gradient(135deg,#2575fc,#6a11cb);color:#fff;border:none;border-radius:8px;}
-table{width:100%;border-collapse:collapse;margin-top:20px;}
-th,td{padding:12px;border-bottom:1px solid #ccc;text-align:center;}
-th{background:#2575fc;color:#fff;}
-.edit{background:#f39c12;color:#fff;padding:6px 10px;border-radius:5px;text-decoration:none;}
-.delete{background:#d9534f;color:#fff;padding:6px 10px;border-radius:5px;text-decoration:none;}
-.readonly{color:#999;font-weight:600;}
-.local-badge{background:#dcfce7;color:#15803d;padding:4px 8px;border-radius:6px;font-size:12px;font-weight:600;}
-.success{text-align:center;color:green;font-weight:bold;margin-bottom:10px;}
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Jobs</title>
+    <link rel="stylesheet" href="../admin.css">
+    <style>
+    .admin-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
+    }
+
+    .job-form input,
+    button {
+        padding: 10px;
+        width: 90%;
+        max-width: 400px;
+        margin: 5px auto;
+        display: block;
+    }
+
+    button {
+        background: linear-gradient(135deg, #2575fc, #6a11cb);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        padding: 12px;
+        border-bottom: 1px solid #ccc;
+        text-align: center;
+    }
+
+    th {
+        background: #2575fc;
+        color: #fff;
+    }
+
+    .edit {
+        background: #f39c12;
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .delete {
+        background: #d9534f;
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .local-badge {
+        background: #dcfce7;
+        color: #15803d;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 12px;
+    }
+
+    .readonly {
+        color: #999;
+        font-weight: 600;
+    }
+
+    .success {
+        text-align: center;
+        color: green;
+        font-weight: bold;
+    }
+    </style>
 </head>
 
 <body>
-<div class="admin-container">
+    <div class="dashboard">
 
-<a href="dashboard.php" style="text-decoration:none;background:#555;color:#fff;padding:8px 14px;border-radius:6px;">← Back to Dashboard</a>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2 class="logo">Jobsy Admin</h2>
+            <nav>
+                <a href="dashboard.php">Dashboard</a>
+                <a href="manage_jobs.php" class="active">Manage Jobs</a>
+                <a href="logout.php" class="logout">Logout</a>
+            </nav>
+        </aside>
 
-<h2>Manage Jobs</h2>
-<?php if(isset($success)) echo "<p class='success'>$success</p>"; ?>
+        <!-- Main -->
+        <main class="main">
+            <header class="topbar">
+                <h1>Manage Jobs</h1>
+                <span class="admin-name">Welcome, Admin</span>
+            </header>
 
-<div class="job-form">
-<h3><?= isset($_GET['edit_local']) ? 'Edit Local Job' : 'Add Local Job' ?></h3>
+            <div class="admin-container">
 
-<?php
-$editJob = null;
-if (isset($_GET['edit_local'])) {
-    foreach ($localJobs as $job) {
-        if ($job['id'] == $_GET['edit_local']) {
-            $editJob = $job;
-            break;
-        }
-    }
+                <?php if(isset($success)) echo "<p class='success'>$success</p>"; ?>
+
+                <div class="job-form">
+                    <h3><?= isset($_GET['edit_local'])?'Edit Local Job':'Add Local Job' ?></h3>
+
+                    <?php
+$editJob=null;
+if(isset($_GET['edit_local'])){
+ foreach($localJobs as $job){
+   if($job['id']==$_GET['edit_local']){$editJob=$job;break;}
+ }
 }
 ?>
 
-<form method="POST">
-<input type="hidden" name="id" value="<?= $editJob['id'] ?? '' ?>">
-<input type="text" name="title" placeholder="Job Title" value="<?= $editJob['title'] ?? '' ?>" required>
-<input type="text" name="company" placeholder="Company" value="<?= $editJob['company'] ?? '' ?>" required>
-<input type="text" name="location" placeholder="Location" value="<?= $editJob['location'] ?? '' ?>" required>
-<input type="email" name="email" placeholder="Company Email" value="<?= $editJob['email'] ?? '' ?>" required>
-<button name="<?= $editJob ? 'edit_job' : 'add_job' ?>">
-<?= $editJob ? 'Update Job' : 'Add Job' ?>
-</button>
-</form>
-</div>
+                    <form method="POST">
+                        <input type="hidden" name="id" value="<?= $editJob['id']??'' ?>">
+                        <input type="text" name="title" placeholder="Job Title" value="<?= $editJob['title']??'' ?>"
+                            required>
+                        <input type="text" name="company" placeholder="Company" value="<?= $editJob['company']??'' ?>"
+                            required>
+                        <input type="text" name="location" placeholder="Location"
+                            value="<?= $editJob['location']??'' ?>" required>
+                        <input type="email" name="email" placeholder="Company Email"
+                            value="<?= $editJob['email']??'' ?>" required>
+                        <button
+                            name="<?= $editJob?'edit_job':'add_job' ?>"><?= $editJob?'Update Job':'Add Job' ?></button>
+                    </form>
+                </div>
 
-<table>
-<thead>
-<tr>
-<th>Title</th>
-<th>Company</th>
-<th>Location</th>
-<th>Date</th>
-<th>Source</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
+                <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Company</th>
+                            <th>Location</th>
+                            <th>Date</th>
+                            <th>Source</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($localJobs as $job): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($job['title']) ?></td>
+                            <td><?= htmlspecialchars($job['company']) ?></td>
+                            <td><?= htmlspecialchars($job['location']) ?></td>
+                            <td><?= $job['date'] ?></td>
+                            <td><span class="local-badge">Local</span></td>
+                            <td id="btns">
+                                <a href="?edit_local=<?= $job['id'] ?>" class="edit">Edit</a>
+                                <a href="?delete=<?= $job['id'] ?>" class="delete"
+                                    onclick="return confirm('Delete job?')">Delete</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
 
-<?php foreach ($localJobs as $job): ?>
-<tr>
-<td><?= htmlspecialchars($job['title']) ?></td>
-<td><?= htmlspecialchars($job['company']) ?></td>
-<td><?= htmlspecialchars($job['location']) ?></td>
-<td><?= $job['date'] ?></td>
-<td><span class="local-badge">Local</span></td>
-<td>
-<a href="?edit_local=<?= $job['id'] ?>" class="edit">Edit</a>
-<a href="?delete=<?= $job['id'] ?>" class="delete" onclick="return confirm('Delete job?')">Delete</a>
-</td>
-</tr>
-<?php endforeach; ?>
+                        <?php foreach($adzunaJobs as $job): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($job['title']) ?></td>
+                            <td><?= htmlspecialchars($job['company']['display_name']??'') ?></td>
+                            <td><?= htmlspecialchars($job['location']['area'][0]??'') ?></td>
+                            <td><?= date('Y-m-d',strtotime($job['created'])) ?></td>
+                            <td>Adzuna</td>
+                            <td class="readonly">Read Only</td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+               </div>
 
-<?php foreach ($adzunaJobs as $job): ?>
-<tr>
-<td><?= htmlspecialchars($job['title']) ?></td>
-<td><?= htmlspecialchars($job['company']['display_name'] ?? '') ?></td>
-<td><?= htmlspecialchars($job['location']['area'][0] ?? '') ?></td>
-<td><?= date('Y-m-d', strtotime($job['created'])) ?></td>
-<td>Adzuna</td>
-<td class="readonly">Read Only</td>
-</tr>
-<?php endforeach; ?>
-
-</tbody>
-</table>
-
-</div>
+            </div>
+        </main>
+    </div>
 </body>
+
 </html>

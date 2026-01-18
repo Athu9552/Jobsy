@@ -2,7 +2,7 @@
     {
         "id": 1767871326,
         "title": "Frontend Developer",
-        "company": "AK2",
+        "company": "AK",
         "location": "Kolhapur",
         "email": "atharvakumbhar9552@gmail.com",
         "date": "2026-01-08",
@@ -36,16 +36,6 @@
         "location": "Japan",
         "email": "comizz@gmail.com",
         "date": "2026-01-11",
-        "source": "Local",
-        "priority": 1
-    },
-    {
-        "id": 1768360532,
-        "title": "Fullstack Developer",
-        "company": "por",
-        "location": "ratnagiri",
-        "email": "po@gmail.com",
-        "date": "2026-01-14",
         "source": "Local",
         "priority": 1
     }
