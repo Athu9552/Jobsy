@@ -80,8 +80,8 @@ const text = await extractResumeText(fileInput);
   }
 
   // Adzuna API credentials
-  const appId = "d4891409";
-  const appKey = "b1e57f5912bbb13c164d9d8e533407ca";
+  const appId = "Your_Id";
+  const appKey = "API_Key";
   const query = matchedSkills.join(" ");
   const url = `https://api.adzuna.com/v1/api/jobs/in/search/1?app_id=${appId}&app_key=${appKey}&what=${query}&where=India`;
 
