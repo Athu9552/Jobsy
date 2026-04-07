@@ -22,13 +22,13 @@ unset($job);
 /* ---------- ADD LOCAL JOB ---------- */
 if (isset($_POST['add_job'])) {
     $newJob = [
-        'id' => time(),
-        'title' => $_POST['title'],
-        'company' => $_POST['company'],
-        'location' => $_POST['location'],
-        'email' => $_POST['email'],
-        'date' => date('Y-m-d'),
-        'source' => 'Local',
+        'id'       => time(),
+        'title'    => htmlspecialchars(trim($_POST['title'])),
+        'company'  => htmlspecialchars(trim($_POST['company'])),
+        'location' => htmlspecialchars(trim($_POST['location'])),
+        'email'    => filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL),
+        'date'     => date('Y-m-d'),
+        'source'   => 'Local',
         'priority' => 1
     ];
     $localJobs[] = $newJob;
@@ -40,10 +40,10 @@ if (isset($_POST['add_job'])) {
 if (isset($_POST['edit_job'])) {
     foreach ($localJobs as &$job) {
         if ($job['id'] == $_POST['id']) {
-            $job['title'] = $_POST['title'];
-            $job['company'] = $_POST['company'];
-            $job['location'] = $_POST['location'];
-            $job['email'] = $_POST['email'];
+            $job['title']    = htmlspecialchars(trim($_POST['title']));
+            $job['company']  = htmlspecialchars(trim($_POST['company']));
+            $job['location'] = htmlspecialchars(trim($_POST['location']));
+            $job['email']    = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
             break;
         }
     }

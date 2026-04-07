@@ -43,16 +43,10 @@ function renderLocalJobs(jobs) {
         <div class="job-footer">
           <span class="date">📅 ${job.date}</span>
 
-          <a class="apply-btn"
-             href="mailto:${job.email}?subject=${encodeURIComponent(
-               "Job Application - " + job.title
-             )}&body=${encodeURIComponent(
-               "Hello " + job.company + ",\n\nI am interested in the " +
-               job.title +
-               " position.\n\nRegards,\nYour Name"
-             )}">
+          <button class="apply-btn"
+             onclick="applyJob('${job.id || job.title}','${job.title}','${job.company}'); window.location.href='mailto:${job.email}?subject=${encodeURIComponent("Job Application - " + job.title)}'">
              Apply
-          </a>
+          </button>
         </div>
       </div>
     `;

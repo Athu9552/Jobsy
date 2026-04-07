@@ -289,8 +289,26 @@ button {
 }
 
 .jobCard {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #2a3a2a;
   padding: 10px 0;
+}
+
+.jobCard .btnjob {
+  margin-top: 8px;
+  height: auto;
+  width: auto;
+  padding: 6px 18px;
+  font-size: 13px;
+  background-color: #ed2337;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.jobCard .btnjob:hover {
+  background-color: #c91c2e;
 }
 
 .recommended-section {
@@ -316,7 +334,7 @@ button {
 .job-box {
   display: flex;
   align-items: baseline;
-  justify-content:  space-around;
+  justify-content: space-around;
   background: #020617;
   color: #fff;
   border-radius: 16px;
@@ -346,34 +364,10 @@ button {
 
 .job-footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 16px;
-}
-
-.apply-btn {
-  background: #ef233c;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-}
-
-.job-footer {
-  display: flex;
   align-items: center;
   gap: 14px;
   margin-top: 14px;
   flex-wrap: wrap;
-}
-
-.tag {
-  background: #22c55e;
-  color: white;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 13px;
 }
 
 .apply-btn {
@@ -773,11 +767,11 @@ footer {
     padding-left: 0;
   }
 
-  #logo{
+  #logo {
     margin-right: -5px;
   }
 
-  #logo h1{
+  #logo h1 {
     font-size: 10px;
   }
 
@@ -789,6 +783,18 @@ footer {
   .job {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
+  }
+
+  #page2 h2 {
+    font-size: 2vw;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  #sectorGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -814,7 +820,7 @@ footer {
     margin-top: 15px;
   }
 
-  #nav-search input{
+  #nav-search input {
     margin-left: 35px;
   }
 
@@ -871,7 +877,46 @@ footer {
   }
 
   .sectorBox {
-    height: 48vh;
+    height: auto;
+  }
+
+  #page2 h2 {
+    font-size: 5vw;
+  }
+
+  .section-title {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .jobs-wrapper {
+    padding: 0 10px;
+  }
+
+  .job-box {
+    flex-direction: column;
+    padding: 15px;
+    align-items: flex-start;
+  }
+
+  .job-footer {
+    width: 100%;
+  }
+
+  .apply-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .recommended-section {
+    padding: 30px 10px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
   }
 
   #page3 {
@@ -902,6 +947,38 @@ footer {
     width: 100%;
     max-width: 350px;
   }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-center ul {
+    padding-left: 0;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  #Savedjobs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #savedJobs,
+  #applicationHistory {
+    width: 90%;
+    min-width: unset;
+    margin: 10px 0;
+  }
+
+  #applicationHistory th,
+  #applicationList td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -927,69 +1004,6 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .upload-wrapper {
-    margin-top: 18px;
-    padding: 0 10px;
-  }
-
-  .upload-box {
-    width: 100%;
-    font-size: 14px;
-    padding: 5px 11px;
-    margin-top: 8px;
-  }
-
-  .upload-btn {
-    width: 54%;
-    padding: 12px;
-    font-size: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .footer-center ul {
-    padding-left: 0;
-  }
-
-  .social-icons {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 1104px) {
-  #Savedjobs {
-    position: relative;
-    z-index: 1;
-  }
-}
-
-@media (max-width: 768px) {
-  #Savedjobs {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #savedJobs,
-  #applicationHistory {
-    width: 90%;
-    min-width: unset;
-    margin: 10px 0;
-  }
-
-  #applicationHistory th,
-  #applicationList td {
-    font-size: 0.8rem;
-    padding: 8px;
-  }
-}
-
-@media (max-width: 480px) {
 
   #savedJobs h2,
   #applicationHistory h2 {
@@ -1000,5 +1014,31 @@ footer {
   #applicationHistory th,
   #applicationList td {
     font-size: 0.75rem;
+  }
+
+  #page2 h2 {
+    font-size: 6vw;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  #sectorGrid {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .jobCard strong,
+  .jobCard span,
+  .jobCard p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1104px) {
+  #Savedjobs {
+    position: relative;
+    z-index: 1;
   }
 }

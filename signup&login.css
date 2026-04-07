@@ -123,6 +123,33 @@ p a:hover {
   color: #d9534f;
 }
 
+/* PASSWORD EYE TOGGLE */
+.input-eye {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.input-eye input {
+  width: 100%;
+  margin-bottom: 0;
+  padding-right: 42px;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 15px;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.eye-btn:hover {
+  color: #2575fc;
+}
+
 /* MOBILE RESPONSIVE */
 @media (max-width: 480px) {
   .SignF {

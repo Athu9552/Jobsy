@@ -1,16 +1,25 @@
 <?php
-// signup.php
-include("db_connect.php"); // your DB connection file
+session_start();
+include("db_connect.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['password1'];
+    $username        = trim($_POST['username'] ?? '');
+    $email           = trim($_POST['email'] ?? '');
+    $password        = $_POST['password'] ?? '';
+    $confirmPassword = $_POST['password1'] ?? '';
 
-    // Basic validation
     if (empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
         echo "All fields are required!";
+        exit();
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email format!";
+        exit();
+    }
+
+    if (strlen($password) < 6) {
+        echo "Password must be at least 6 characters!";
         exit();
     }
 
@@ -19,25 +28,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Hash password for security
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Check if email already exists
-    $checkQuery = "SELECT * FROM users WHERE email='$email'";
-    $checkResult = mysqli_query($conn, $checkQuery);
+    $checkStmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $checkStmt->bind_param("s", $email);
+    $checkStmt->execute();
+    $checkStmt->store_result();
 
-    if ($checkResult && mysqli_num_rows($checkResult) > 0) {
+    if ($checkStmt->num_rows > 0) {
         echo "Email already registered!";
         exit();
     }
 
-    // Insert new user
-    $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashedPassword')";
-    if (mysqli_query($conn, $query)) {
-            header("Location: login.html");
-    exit();
+    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $username, $email, $hashedPassword);
+    if ($stmt->execute()) {
+        header("Location: ../login.html");
+        exit();
     } else {
-        echo "Error: " . mysqli_error($conn);
+        echo "Registration failed. Please try again.";
     }
 }
 ?>

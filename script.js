@@ -324,10 +324,16 @@ function applyJob(jobId, title, company) {
   fetch("Backend/apply_job.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `job_id=${jobId}&title=${title}&company=${company}`,
+    body: `job_id=${encodeURIComponent(jobId)}&title=${encodeURIComponent(title)}&company=${encodeURIComponent(company)}`,
   })
     .then((res) => res.text())
-    .then((data) => alert("Application submitted!"))
+    .then((data) => {
+      if (data.includes("login")) {
+        alert("Please login to track your applications.");
+      } else {
+        alert("Application submitted!");
+      }
+    })
     .catch((err) => console.error("Error applying job:", err));
 }
 
@@ -412,7 +418,7 @@ async function loadSectorJobs() {
             <strong>${job.title}</strong><br>
             <span>${job.company.display_name}</span><br>
             <p>${job.location.display_name}</p>
-            <a href="${job.redirect_url}" target="_blank">Apply</a>
+            <button class="btnjob" onclick="applyJob('${job.id}','${job.title}','${job.company.display_name}'); window.open('${job.redirect_url}','_blank')">Apply</button>
           </div>
         `;
       });

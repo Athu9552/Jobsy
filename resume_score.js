@@ -1,3 +1,31 @@
+function saveJob(jobId, title, company) {
+  fetch("Backend/save_job.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `job_id=${encodeURIComponent(jobId)}&title=${encodeURIComponent(title)}&company=${encodeURIComponent(company)}`,
+  })
+    .then(res => res.text())
+    .then(data => alert(data))
+    .catch(err => console.error("Save failed:", err));
+}
+
+function applyJob(jobId, title, company) {
+  fetch("Backend/apply_job.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `job_id=${encodeURIComponent(jobId)}&title=${encodeURIComponent(title)}&company=${encodeURIComponent(company)}`,
+  })
+    .then(res => res.text())
+    .then(data => {
+      if (data.includes("login")) {
+        alert("Please login to track your applications.");
+      } else {
+        alert("Application submitted!");
+      }
+    })
+    .catch(err => console.error("Error applying job:", err));
+}
+
 function showSearchResults(results, keyword) {
     const title = document.getElementById("searchTitle");
     const container = document.getElementById("searchResults");
@@ -68,8 +96,8 @@ async function searchJob() {
                     <p>${job.location.display_name}</p>
 
                     <div class="job-actions">
-                        <button class="btn1" onclick="alert('Save needs backend')">Save</button>
-                        <button class="btn1"><a href="${job.redirect_url}" target="_blank">Apply</a></button>
+                        <button class="btn1" onclick="saveJob('${job.id}','${job.title}','${job.company.display_name}')">Save</button>
+                        <button class="btn1" onclick="applyJob('${job.id}','${job.title}','${job.company.display_name}'); window.open('${job.redirect_url}','_blank')">Apply</button>
                     </div>
                 </div>
             `;
