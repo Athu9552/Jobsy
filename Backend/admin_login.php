@@ -2,7 +2,7 @@
 session_start();
 
 $admin_user = "admin";
-$admin_pass = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"; // bcrypt of 'admin123'
+$admin_pass = '$2y$10$dqlr/Q4au1I3nrIugnvSq.8CHNQl92m8uXDzXzFS8u3ycyhn.r0em';
 
 if (isset($_POST['login'])) {
     $username = trim($_POST['username'] ?? '');
